@@ -1,0 +1,10 @@
+.main{
+    display: flex;
+    flex-direction: column;
+}
+.mainNav{
+    height: 10%;
+    background:linear-gradient(to right,rgb(245, 211, 211),rgb(243, 108, 108));
+    display: flex;
+    justify-content: center;
+}
