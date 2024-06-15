@@ -1,42 +1,43 @@
 import {useEffect, useState} from 'react';
 import classes from "../styles/form2.module.css";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { updateTypeOfWheels } from '../redux/bookingReducer';
+import { updateVehicleType } from '../redux/bookingReducer';
 
 function Form2() {
 
-    const [type,setType] = useState({typeOfWheels:""});
+    const [type,setType] = useState({vehicleType:""});
     const [error,setError] = useState("")
     const [data,setData] = useState([]);
-    
+    const params = useParams();
     const dispatch = useDispatch();
-    
+    console.log(type)
+   
     
     const navigate = useNavigate();
 
     const handleChange =(e)=>{
-        setType({typeOfWheels:e.target.value});
+        setType({vehicleType:e.target.value});
         
     }
 
     function handleSubmit(e){
         e.preventDefault();
-        if(!type.typeOfWheels){
+        if(!type.vehicleType){
             setError("Please select a valid option !")
         }
         else{
-           dispatch(updateTypeOfWheels(type))
-           navigate(`/form3/${type.typeOfWheels}`);
+           dispatch(updateVehicleType(type));
+          navigate(`/form4/${type.vehicleType}`)
             
         }
     }
 
     useEffect(()=>{
         async function fetchData(){
-            const res = await axios.get("http://localhost:5000/api/get/typeOfWheels");
-            
+            const res = await axios.get(`http://localhost:5000/api/get/vehicleType/${params.typeOfWheel}`);
+           
             if(!res.status ===200){
                 setError("Server error")
             }
@@ -49,7 +50,7 @@ function Form2() {
   return (
     <main className={classes.main}>
         <h3>
-            Please select number of wheels
+            Please select type of vehicle
         </h3>
         <form className={classes.wheelsForm} onSubmit={handleSubmit}>
             
@@ -59,13 +60,13 @@ function Form2() {
                         <label>
                     {item}:
                 </label>
-                <input type='radio' onChange={handleChange} name='car' value={item} checked={type.typeOfWheels===item} ></input>
+                <input type='radio' onChange={handleChange}  value={item} checked={type.vehicleType===item} ></input>
                       </div>  
                     )
                 })}
                 
             <div className={classes.buttonContainer}>
-                <button disabled={!type.typeOfWheels}>
+                <button disabled={!type.vehicleType}>
                     Next
                 </button>
             </div>

@@ -36,4 +36,32 @@
 .buttonContainer button:disabled{
     color: gray;
 }
+.dateContainer{
+    display: flex;
+    gap: 20px;
+    
+    width: 60%;
+    
+}
+@media screen and (max-width:750px){
+    .dateContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.dateContainer div {
+    display: flex;
+    gap: 10px;
+   
+   
+}
 
+.dateContainer div input{
+    width: 80%;
+    padding: 5px;
+    border-radius: 10px;
+}
+.error{
+    color: red;
+    text-align: center;
+}

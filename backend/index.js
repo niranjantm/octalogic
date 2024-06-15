@@ -1,5 +1,5 @@
 import express from "express";
-import sequelize from "./db/inti.js";
+import sequelize from "./db/init.js";
 import cors from "cors";
 import bookingRouter from "./routes/booking.routes.js"
 
@@ -12,6 +12,17 @@ app.use(cors());
 
 app.use(bookingRouter)
 
+app.use((err, req, res, next) => {
+    let statusCode = err.statusCode || 500; 
+    let message = err.message || "Internal server error"; 
+
+    
+    return res.status(statusCode).json({
+        success: false, 
+        errorMessage: message,
+        statusCode,
+    });
+});
 
 async function start(){
     try{

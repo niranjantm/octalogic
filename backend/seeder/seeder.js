@@ -5,13 +5,12 @@ import Vehicle from '../models/vehicle.model.js';
 const seed = async () => {
   await sequelize.sync({ force: true });
 
-  // Add vehicle types and vehicles
   const vehicles = [
-    { typeOfWheels: 'fourWheels', vehicleType: 'hatchback', vehicleName: 'Swift' },
-    { typeOfWheels: 'fourWheels', vehicleType: 'suv', vehicleName: 'XUV 700' },
-    { typeOfWheels: 'fourWheels', vehicleType: 'sedan', vehicleName: 'Verna' },
-    { typeOfWheels: 'twoWheels', vehicleType: 'cruiser', vehicleName: 'Bullet' },
-    { typeOfWheels: 'twoWheels', vehicleType: 'sports', vehicleName: 'Pulsar' },
+    { typeOfWheels: 'Four Wheels', vehicleType: 'hatchback', vehicleName: 'Swift' },
+    { typeOfWheels: 'Four Wheels', vehicleType: 'suv', vehicleName: 'XUV 700' },
+    { typeOfWheels: 'Four Wheels', vehicleType: 'sedan', vehicleName: 'Verna' },
+    { typeOfWheels: 'Two Wheels', vehicleType: 'cruiser', vehicleName: 'Bullet' },
+    { typeOfWheels: 'Two Wheels', vehicleType: 'sports', vehicleName: 'Pulsar' },
   ];
 
   for (const vehicle of vehicles) {
